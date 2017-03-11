@@ -1,10 +1,10 @@
 # DeathView
 A [PocketMine-MP](https://github.com/pmmp/PocketMine-MP) plugin that puts a player into spectator when they die.  
   
-Basically its like Mineplex: 
-1. Player 'dies' (but isint shown a death screen).
-2. Player gets put in spectator for a few seconds.
-3. Player gets put in survival and teleported to spawn.
+Basically its like Mineplex:  
+1. Player 'dies' (but isint shown a death screen).<br>               
+2. Player gets put in spectator for a few seconds. <br> 
+3. Player gets put in survival and teleported to spawn.  <br>
 
 ### Configuration
 ```yaml
