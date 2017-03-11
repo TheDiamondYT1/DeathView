@@ -4,7 +4,7 @@ namespace TheDiamondYT\DeathView;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\scheduler\PlugimTask;
+use pocketmine\scheduler\PluginTask;
 use pocketmine\Player;
 use pocketmine\entity\Effect;
 
