@@ -4,7 +4,6 @@ namespace TheDiamondYT\DeathView;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\scheduler\PluginTask;
 use pocketmine\Player;
 use pocketmine\entity\Effect;
 
@@ -27,14 +26,7 @@ class Main extends PluginBase implements Listener {
 	    if($ent instanceof Player && $ent->getHealth() - $ev->getDamage() <= 0) {
 	        $ev->setCancelled(true);
 	        $ent->setGamemode(Player::SPECTATOR);
-	        $this->getServer()->getScheduler()->scheduleDelayedTask(new PluginTask() {
-	            public function onRun($currentTick) {
-	                $ent->setGamemode(Player::SURVIVAL);
-	                if($this->cfg["teleport-to-spawn"] === true) {
-	                    $ent->teleport($this->getServer()->getDefaultLevel()->getSafeSpawn());
-	                }
-	            }
-	        }), $this->cfg["ticks"]);
+	        $this->getServer()->getScheduler()->scheduleDelayedTask(new SpectateTask($this), $this->cfg["ticks"]);
 	    }
 	}
 	
