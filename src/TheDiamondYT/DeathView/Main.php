@@ -26,7 +26,7 @@ class Main extends PluginBase implements Listener {
 	    if($ent instanceof Player && $ent->getHealth() - $ev->getDamage() <= 0) {
 	        $ev->setCancelled(true);
 	        $ent->setGamemode(Player::SPECTATOR);
-	        $this->getServer()->getScheduler()->scheduleDelayedTask(new SpectateTask($this), $this->cfg["ticks"]);
+	        $this->getServer()->getScheduler()->scheduleDelayedTask(new SpectateTask($this), $this->cfg["time"] * 20);
 	    }
 	}
 	
