@@ -1,11 +1,14 @@
-# Death message configuration
+# The messages to be displayed when you 'die'
+# {victim} {world} - & instead of §
 death-message:
   display: true
-  died: "{victim} died"
+  died: 
+    player: "Oh noes! You will respawn soon."
+    all: "{victim} died :("
   
 # The amount of time you will be in spectator mode for (in seconds)
 time: 5
 
-# Teleport to the world spawnpoint when you respawn
+# Teleport to the world spawnpoint when you 'respawn'
 teleport-to-spawn: true
 

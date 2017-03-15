@@ -16,9 +16,9 @@ class SpectateTask extends PluginTask {
 
     public function onRun($currentTick) {
         $cfg = $this->owner->cfg;
-        $player->setGamemode(Player::SURVIVAL);
+        $this->player->setGamemode(Player::SURVIVAL);
         if($cfg["teleport-to-spawn"] === true) {
-            $player->teleport($this->owner->getServer()->getDefaultLevel()->getSafeSpawn());
+            $this->player->teleport($this->owner->getServer()->getDefaultLevel()->getSafeSpawn());
         }
     }
 }
