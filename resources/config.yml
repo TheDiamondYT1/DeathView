@@ -4,7 +4,7 @@ death-message:
   display: true
   died: 
     player: "Oh noes! You will respawn soon."
-    all: "{victim} died :("
+    all: "{victim} died ({cause}) :("
   
 # The amount of time you will be in spectator mode for (in seconds)
 time: 5
@@ -12,3 +12,5 @@ time: 5
 # Teleport to the world spawnpoint when you 'respawn'
 teleport-to-spawn: true
 
+# Fire a PlayerDeathEvent when you 'die'
+fire-death-event: false
