@@ -25,6 +25,7 @@ class Main extends PluginBase implements Listener {
 	public function onEntityDamage(EntityDamageEvent $ev) {
 	    $ent = $ev->getEntity();
 	    if($ent instanceof Player && $ent->getHealth() - $ev->getDamage() <= 0) {
+	        if($ent->getGamemode() === Player::CREATIVE) return;
 	        $ev->setCancelled(true);
 	        $ent->setGamemode(Player::SPECTATOR);
 	        $this->getServer()->getScheduler()->scheduleDelayedTask(new SpectateTask($this, $ent), $this->cfg["time"] * 20);
