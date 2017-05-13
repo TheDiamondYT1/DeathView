@@ -1,5 +1,5 @@
 # The messages to be displayed when you 'die'
-# {victim} {world} - & instead of §
+# {victim} {world} 
 death-message:
   display: true
   died: 
@@ -12,7 +12,9 @@ time: 5
 # Teleport to the world spawnpoint when you 'respawn'
 teleport-to-spawn: true
 
-# Set teleport-to-spawn to false to use
+# Set teleport-to-spawn to false to use and change teleport-to values
+teleport: false
+
 teleport-to:
   x: 8
   y: 100

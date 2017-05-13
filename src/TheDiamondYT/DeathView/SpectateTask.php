@@ -21,7 +21,8 @@ class SpectateTask extends PluginTask {
         
         if($cfg["teleport-to-spawn"] === true) {
             $this->player->teleport($this->owner->getServer()->getDefaultLevel()->getSafeSpawn());
-        } else {
+        } 
+        if($cfg["teleport"] === true) {
             $this->player->teleport($cfg["teleport-to"]["x"], $cfg["teleport-to"]["y"], $cfg["teleport-to"]["z"]);
         }
     }
