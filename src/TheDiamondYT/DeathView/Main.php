@@ -20,6 +20,10 @@ class Main extends PluginBase implements Listener {
 	    $this->saveDefaultConfig();
 	    $this->cfg = $this->getConfig()->getAll();
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
+		// Check for clash	
+		if($this->cfg["teleport"] && $this->cfg["teleport-to-spawn"]) {
+		    throw new \Exception("Teleporting to spawn enable in config, but teleporting to specific coordinates is also enabled.");
+		}
 	}
 	
 	/**
@@ -42,11 +46,11 @@ class Main extends PluginBase implements Listener {
 	        $entity->setGamemode(Player::SPECTATOR);
 	        $this->getServer()->getScheduler()->scheduleDelayedTask(new SpectateTask($this, $entity), $this->cfg["time"] * 20);  
 	           
-	        if($this->cfg["fire-death-event"] === true) {
+	        if($this->cfg["fire-death-event"]) {
 	            //$this->getServer()->getPluginManager()->callEvent($this, $entity->getDrops());
 	        }
 	        
-	        if($this->cfg["death-message"]["display"] === true) {
+	        if($this->cfg["death-message"]["display"]) {
 	            $entity->sendMessage($this->replace($ev, $this->cfg["death-message"]["died"]["player"]));
 	            $this->getServer()->broadcastMessage($this->replace($ev, $this->cfg["death-message"]["died"]["all"]));
 	        }
