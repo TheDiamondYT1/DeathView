@@ -21,8 +21,17 @@ time: 5
 
 # Teleport to the world spawnpoint when you 'respawn'
 teleport-to-spawn: true
+
+# Set teleport-to-spawn to false to use
+teleport-to:
+  x: 8
+  y: 100
+  z: 8
+
+# Fire a PlayerDeathEvent when you 'die'
+fire-death-event: false
 ```
  
 ### TODO
-* Add permissions 
+* Add permission
 

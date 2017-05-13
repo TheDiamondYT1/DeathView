@@ -39,10 +39,15 @@ class Main extends PluginBase implements Listener {
 		}
 	}
 	
-	private function replace($ev, $text) {
+	/**
+	 * @param Event  $ev
+	 * @param string $text
+	 *
+	 * @return string
+	 */
+	private function replace($ev, string $text): string {
 	    $text = str_replace("{victim}", $ev->getEntity()->getName(), $text);
 	    $text = str_replace("{world}", $ev->getEntity()->getLevel()->getName(), $text);
-	    $text = str_replace("&", TF::ESCAPE, $text);
 	    return $text;
 	}
 }
