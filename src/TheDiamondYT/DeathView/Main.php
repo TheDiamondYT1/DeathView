@@ -22,18 +22,32 @@ class Main extends PluginBase implements Listener {
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 	}
 	
+	/**
+	 * @param EntityDamageEvent $ev
+	 *
+	 * @priorty         HIGH
+	 * @ignoreCancelled false
+	 */
 	public function onEntityDamage(EntityDamageEvent $ev) {
-	    $ent = $ev->getEntity();
-	    if($ent instanceof Player && $ent->getHealth() - $ev->getDamage() <= 0) {
-	        if($ent->getGamemode() === Player::CREATIVE) return;
-	        $ev->setCancelled(true);
-	        $ent->setGamemode(Player::SPECTATOR);
-	        $this->getServer()->getScheduler()->scheduleDelayedTask(new SpectateTask($this, $ent), $this->cfg["time"] * 20);
-	        if($this->cfg["fire-death-event"] === true) {
-	            //$this->getServer()->getPluginManager()->callEvent($this, $ent->getDrops());
+	    if($ev->isCancelled()) {
+	        return;
+	    }    
+	    $entity = $ev->getEntity();
+	    
+	    if($entity instanceof Player && $entity->getHealth() - $ev->getDamage() <= 0) {
+	        if($entity->getGamemode() === Player::CREATIVE){
+	            return;
 	        }
+	        $ev->setCancelled(true);
+	        $entity->setGamemode(Player::SPECTATOR);
+	        $this->getServer()->getScheduler()->scheduleDelayedTask(new SpectateTask($this, $entity), $this->cfg["time"] * 20);  
+	           
+	        if($this->cfg["fire-death-event"] === true) {
+	            //$this->getServer()->getPluginManager()->callEvent($this, $entity->getDrops());
+	        }
+	        
 	        if($this->cfg["death-message"]["display"] === true) {
-	            $ent->sendMessage($this->replace($ev, $this->cfg["death-message"]["died"]["player"]));
+	            $entity->sendMessage($this->replace($ev, $this->cfg["death-message"]["died"]["player"]));
 	            $this->getServer()->broadcastMessage($this->replace($ev, $this->cfg["death-message"]["died"]["all"]));
 	        }
 		}
