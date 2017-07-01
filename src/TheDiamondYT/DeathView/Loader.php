@@ -17,10 +17,10 @@ class Loader extends PluginBase implements Listener {
 	
 	public function onEnable() {
 		$this->saveDefaultConfig();
-		$this->cfg = $this->getConfig()->getAll();
+		$this->config = $this->getConfig()->getAll();
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		// Check for clash	
-		if($this->cfg["teleport"] && $this->cfg["teleport-to-spawn"]) {
+		if($this->config["teleport"] && $this->config["teleport-to-spawn"]) {
 			throw new \Exception("Teleporting to spawn enable in config, but teleporting to specific coordinates is also enabled.");
 		}
 	}
@@ -43,15 +43,15 @@ class Loader extends PluginBase implements Listener {
 			}
 			$ev->setCancelled(true);
 			$entity->setGamemode(Player::SPECTATOR);
-			$this->getServer()->getScheduler()->scheduleDelayedTask(new SpectateTask($this, $entity), $this->cfg["time"] * 20);  
+			$this->getServer()->getScheduler()->scheduleDelayedTask(new SpectateTask($this, $entity), $this->config["time"] * 20);  
 	           
-			if($this->cfg["fire-death-event"]) {
+			if($this->config["fire-death-event"]) {
 				//$this->getServer()->getPluginManager()->callEvent($this, $entity->getDrops());
 			}
 	        
-			if($this->cfg["death-message"]["display"]) {
-				$entity->sendMessage($this->replace($ev, $this->cfg["death-message"]["died"]["player"]));
-				$this->getServer()->broadcastMessage($this->replace($ev, $this->cfg["death-message"]["died"]["all"]));
+			if($this->config["death-message"]["display"]) {
+				$entity->sendMessage($this->replace($ev, $this->config["death-message"]["died"]["player"]));
+				$this->getServer()->broadcastMessage($this->replace($ev, $this->config["death-message"]["died"]["all"]));
 			}
 		}
 	}

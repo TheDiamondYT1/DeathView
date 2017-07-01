@@ -15,7 +15,7 @@ class SpectateTask extends PluginTask {
 	}
 
 	public function onRun($currentTick) {
-		$config = $this->getOwner()->getConfig();
+		$config = $this->getOwner()->getConfig()->getAll();
         
 		$this->player->setGamemode(Player::SURVIVAL);
         
